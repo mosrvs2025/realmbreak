@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>REALMBREAK — a mixed-reality fight in your living room</title>
+    <meta name="description" content="A villain teleports onto your real floor. Charge an energy orb with your bare hands, shatter your room into a sunlit arena, and win the beam clash. Original WebXR experience for Meta Quest, with a desktop &amp; phone fallback." />
+    <meta name="keywords" content="WebXR, mixed reality, Meta Quest, hand tracking, passthrough, AR game, Three.js, browser game, beam clash" />
+    <meta name="author" content="REALMBREAK contributors" />
+    <meta name="theme-color" content="#05070d" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="__SITE_URL__/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="REALMBREAK" />
+    <meta property="og:title" content="REALMBREAK — shatter your room. Break the realm." />
+    <meta property="og:description" content="Mixed-reality fight for Meta Quest: a villain lands on your real floor, your room cracks and shatters into a sunlit arena, and the beams clash. Free, in your browser." />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:image" content="__SITE_URL__/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="REALMBREAK title over a cracked blue realm with a magenta villain silhouette and clashing beams" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="REALMBREAK — shatter your room. Break the realm." />
+    <meta name="twitter:description" content="A WebXR mixed-reality fight for Meta Quest. Charge with your hands, break your room, win the beam clash." />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
+    <meta name="twitter:image:alt" content="REALMBREAK title over a cracked blue realm with clashing beams" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "REALMBREAK",
+        "url": "__SITE_URL__/",
+        "image": "__SITE_URL__/og-image.png",
+        "description": "An original WebXR mixed-reality fight: charge an energy orb with your hands, shatter your room into an arena and win a beam clash.",
+        "genre": ["Action", "Mixed reality"],
+        "applicationCategory": "Game",
+        "operatingSystem": "Meta Quest Browser, Chrome, Safari, Firefox",
+        "gamePlatform": ["Meta Quest", "Web browser"],
+        "playMode": "SinglePlayer",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT"
+      }
+    </script>
+  </head>
+  <body>
+    <main id="landing">
+      <svg class="cracks" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <path d="M600 -10 L585 90 L640 170 L610 260 L670 330 L640 420 L700 520 L680 640 L730 810" />
+        <path d="M640 170 L760 150 L860 210 L990 190 L1210 260" />
+        <path d="M610 260 L480 300 L380 260 L240 330 L-10 300" />
+        <path d="M670 330 L780 400 L900 390 L1010 470 L1210 520" />
+        <path d="M640 420 L520 470 L430 450 L300 540 L160 520 L-10 610" />
+        <path d="M700 520 L760 600 L880 640 L960 720 L1010 810" />
+        <path d="M585 90 L500 40 L430 70 L340 20" />
+      </svg>
+      <section class="card">
+        <p class="eyebrow">Mixed reality &middot; WebXR</p>
+        <h1>REALM<span>BREAK</span></h1>
+        <p class="pitch">
+          A villain teleports onto your real floor. Cup your hands to charge a blast, crack your room open, and shatter it into a sunlit arena for one last beam clash.
+        </p>
+        <div class="actions">
+          <button id="enter-ar" class="btn" type="button" hidden>Enter AR on Quest</button>
+          <button id="play" class="btn primary" type="button">Play on this screen</button>
+        </div>
+        <p id="status" role="status" aria-live="polite"></p>
+        <p class="fine">
+          Best on Meta Quest 3 / Pro in the Quest Browser (passthrough + hand tracking; controllers work too).
+          Desktop &amp; phone: hold click/tap to charge, click to fire, mash to win. Press Esc to leave.
+          Original characters, art and audio &middot; <a href="https://github.com/mosrvs2025/realmbreak">MIT licensed</a>.
+        </p>
+      </section>
+      <noscript>REALMBREAK is a WebXR experience and needs JavaScript. Use a Meta Quest browser, or any modern desktop or phone browser.</noscript>
+    </main>
+    <div id="stage" hidden></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
