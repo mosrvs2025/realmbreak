@@ -16,15 +16,16 @@ const out = resolve(process.argv[2] ?? 'docs/screenshots');
 mkdirSync(out, { recursive: true });
 
 const scenes = [
-  { file: '01-landing', url: '/', landing: true },
-  { file: '02-teleport-in', url: '/?scene=intro&t=1.3' },
-  { file: '03-taunt-and-orbs', url: '/?scene=intro&t=5.0' },
-  { file: '04-charge', url: '/?scene=charge' },
-  { file: '05-cracks', url: '/?scene=crack&t=2.1' },
-  { file: '06-shatter', url: '/?scene=shatter&t=1.9' },
-  { file: '07-arena', url: '/?scene=arena&t=3.6' },
-  { file: '08-beam-clash', url: '/?scene=clash&t=3.0' },
-  { file: '09-victory', url: '/?scene=win&t=4.0' },
+  { file: '00-hub', url: '/', hub: true },
+  { file: '01-landing', url: '/realmbreak', landing: true },
+  { file: '02-teleport-in', url: '/realmbreak/?scene=intro&t=1.3' },
+  { file: '03-taunt-and-orbs', url: '/realmbreak/?scene=intro&t=5.0' },
+  { file: '04-charge', url: '/realmbreak/?scene=charge' },
+  { file: '05-cracks', url: '/realmbreak/?scene=crack&t=2.1' },
+  { file: '06-shatter', url: '/realmbreak/?scene=shatter&t=1.9' },
+  { file: '07-arena', url: '/realmbreak/?scene=arena&t=3.6' },
+  { file: '08-beam-clash', url: '/realmbreak/?scene=clash&t=3.0' },
+  { file: '09-victory', url: '/realmbreak/?scene=win&t=4.0' },
 ];
 
 const { base, stop } = await startPreview();
@@ -38,7 +39,8 @@ for (const s of scenes) {
   // /_vercel/* scripts only exist on Vercel, so 404s for them locally are expected
   page.on('response', (r) => r.status() >= 400 && !r.url().includes('/_vercel/') && errors.push(`${r.status()} ${r.url()}`));
   await page.goto(base + s.url, { waitUntil: 'networkidle' });
-  if (s.landing) await page.waitForTimeout(3600);
+  if (s.hub) await page.waitForTimeout(1800);
+  else if (s.landing) await page.waitForTimeout(3600);
   else {
     await page.waitForFunction(() => window.__realmbreak, null, { timeout: 30000 });
     await page.waitForTimeout(600);

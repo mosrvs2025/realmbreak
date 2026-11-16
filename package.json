@@ -18,7 +18,8 @@
     "budget": "node scripts/check-budget.mjs",
     "assets": "node scripts/generate-assets.mjs",
     "screenshots": "node scripts/screenshots.mjs",
-    "test:xr": "node scripts/xr-smoke.mjs"
+    "test:xr": "node scripts/xr-smoke.mjs",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -3,86 +3,139 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>REALMBREAK — a mixed-reality fight in your living room</title>
-    <meta name="description" content="A villain teleports onto your real floor. Charge an energy orb with your bare hands, shatter your room into a sunlit arena, and win the beam clash. Original WebXR experience for Meta Quest, with a desktop &amp; phone fallback." />
-    <meta name="keywords" content="WebXR, mixed reality, Meta Quest, hand tracking, passthrough, AR game, Three.js, browser game, beam clash" />
-    <meta name="author" content="REALMBREAK contributors" />
-    <meta name="theme-color" content="#05070d" />
+    <title>MR — Mixed Reality by Maurice Garcia</title>
+    <meta name="description" content="Mixed-reality experiments by Maurice Garcia that run in your browser: put on a Meta Quest, or play on desktop and phone. Start with REALMBREAK, a WebXR beam-clash fight in your living room." />
+    <meta name="keywords" content="mixed reality, WebXR, Meta Quest, hand tracking, passthrough, AR games, browser games, Maurice Garcia" />
+    <meta name="author" content="Maurice Garcia" />
+    <meta name="theme-color" content="#0c0a09" />
     <meta name="color-scheme" content="dark" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="__SITE_URL__/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="REALMBREAK" />
-    <meta property="og:title" content="REALMBREAK — shatter your room. Break the realm." />
-    <meta property="og:description" content="Mixed-reality fight for Meta Quest: a villain lands on your real floor, your room cracks and shatters into a sunlit arena, and the beams clash. Free, in your browser." />
+    <meta property="og:site_name" content="MR — Mixed Reality by Maurice Garcia" />
+    <meta property="og:title" content="MR — Mixed Reality by Maurice Garcia" />
+    <meta property="og:description" content="Mixed-reality experiments that run in your browser. Meta Quest, desktop and phone. Start with REALMBREAK." />
     <meta property="og:url" content="__SITE_URL__/" />
-    <meta property="og:image" content="__SITE_URL__/og-image.png" />
+    <meta property="og:image" content="__SITE_URL__/og-hub.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="REALMBREAK title over a cracked blue realm with a magenta villain silhouette and clashing beams" />
+    <meta property="og:image:alt" content="MR — Mixed Reality by Maurice Garcia, in warm rust on black over a glowing perspective grid" />
     <meta property="og:locale" content="en_US" />
-
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="REALMBREAK — shatter your room. Break the realm." />
-    <meta name="twitter:description" content="A WebXR mixed-reality fight for Meta Quest. Charge with your hands, break your room, win the beam clash." />
-    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
-    <meta name="twitter:image:alt" content="REALMBREAK title over a cracked blue realm with clashing beams" />
+    <meta name="twitter:title" content="MR — Mixed Reality by Maurice Garcia" />
+    <meta name="twitter:description" content="Mixed-reality experiments that run in your browser. Start with REALMBREAK." />
+    <meta name="twitter:image" content="__SITE_URL__/og-hub.png" />
+    <meta name="twitter:image:alt" content="MR — Mixed Reality by Maurice Garcia" />
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-mr.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap"
+    />
+
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "VideoGame",
-        "name": "REALMBREAK",
-        "url": "__SITE_URL__/",
-        "image": "__SITE_URL__/og-image.png",
-        "description": "An original WebXR mixed-reality fight: charge an energy orb with your hands, shatter your room into an arena and win a beam clash.",
-        "genre": ["Action", "Mixed reality"],
-        "applicationCategory": "Game",
-        "operatingSystem": "Meta Quest Browser, Chrome, Safari, Firefox",
-        "gamePlatform": ["Meta Quest", "Web browser"],
-        "playMode": "SinglePlayer",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "license": "https://opensource.org/licenses/MIT"
-      }
+      __HUB_JSONLD__
     </script>
   </head>
   <body>
-    <main id="landing">
-      <svg class="cracks" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        <path d="M600 -10 L585 90 L640 170 L610 260 L670 330 L640 420 L700 520 L680 640 L730 810" />
-        <path d="M640 170 L760 150 L860 210 L990 190 L1210 260" />
-        <path d="M610 260 L480 300 L380 260 L240 330 L-10 300" />
-        <path d="M670 330 L780 400 L900 390 L1010 470 L1210 520" />
-        <path d="M640 420 L520 470 L430 450 L300 540 L160 520 L-10 610" />
-        <path d="M700 520 L760 600 L880 640 L960 720 L1010 810" />
-        <path d="M585 90 L500 40 L430 70 L340 20" />
+    <div class="bg" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="grid"></div>
+      <div class="grain"></div>
+    </div>
+
+    <header class="top">
+      <a class="mark" href="/" aria-label="MR — home"><span>MR</span><i></i></a>
+      <nav aria-label="Primary">
+        <a href="#experiences">Experiences</a>
+        <a href="#about">About</a>
+        <a class="ext" href="https://mauricegarcia.com" rel="noopener">mauricegarcia.com <span aria-hidden="true">&#8599;</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <svg class="hero-art" viewBox="0 0 520 460" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a5c"/><stop offset="1" stop-color="#ff6535"/></linearGradient>
+          <radialGradient id="rf" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#ff6535" stop-opacity=".35"/><stop offset="1" stop-color="#ff6535" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="260" cy="250" rx="250" ry="200" fill="url(#rf)"/>
+        <g class="room" fill="none" stroke="url(#rg)" stroke-width="1.6" stroke-linejoin="round">
+          <rect x="30" y="20" width="460" height="400" rx="2" opacity=".55"/>
+          <rect x="150" y="120" width="220" height="190" opacity=".9"/>
+          <path d="M30 20 L150 120 M490 20 L370 120 M30 420 L150 310 M490 420 L370 310" opacity=".7"/>
+          <path d="M150 310 L370 310 M110 350 L410 350 M70 388 L450 388" opacity=".35"/>
+          <path d="M210 310 L170 420 M260 310 L260 420 M310 310 L350 420" opacity=".3"/>
+        </g>
+        <g class="crack" fill="none" stroke="#ffd2bd" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M262 20 L246 96 L286 150 L252 212 L298 262 L270 320 L306 420"/>
+          <path d="M286 150 L350 138 L402 176 M252 212 L196 238 L160 226 M298 262 L360 276" stroke-width="1.5" opacity=".8"/>
+        </g>
+        <g class="shards" fill="#ff6535" opacity=".85">
+          <polygon points="388,64 430,48 418,92"/>
+          <polygon points="96,70 138,92 100,112"/>
+          <polygon points="420,330 460,350 428,372" opacity=".6"/>
+          <polygon points="70,300 108,316 80,344" opacity=".6"/>
+        </g>
       </svg>
-      <section class="card">
-        <p class="eyebrow">Mixed reality &middot; WebXR</p>
-        <h1>REALM<span>BREAK</span></h1>
-        <p class="pitch">
-          A villain teleports onto your real floor. Cup your hands to charge a blast, crack your room open, and shatter it into a sunlit arena for one last beam clash.
+      <section class="hero">
+        <p class="eyebrow">Mixed reality &middot; WebXR &middot; by Maurice Garcia</p>
+        <h1>Your room is<br />the <em>console.</em></h1>
+        <p class="lede">
+          Small, original mixed-reality games and experiments that open straight from a link. Put on a Meta Quest and play in your
+          living room &mdash; or use your desktop or phone.
         </p>
-        <div class="actions">
-          <button id="enter-ar" class="btn" type="button" hidden>Enter AR on Quest</button>
-          <button id="play" class="btn primary" type="button">Play on this screen</button>
+        <div class="cta">
+          <a class="btn primary" href="/realmbreak" data-exp="realmbreak">Play REALMBREAK <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn ghost" href="#experiences">All experiences</a>
         </div>
-        <p id="status" role="status" aria-live="polite"></p>
-        <p class="fine">
-          Best on Meta Quest 3 / Pro in the Quest Browser (passthrough + hand tracking; controllers work too).
-          Desktop &amp; phone: hold click/tap to charge, click to fire, mash to win. Press Esc to leave.
-          Original characters, art and audio &middot; <a href="https://github.com/mosrvs2025/realmbreak">MIT licensed</a>.
+        <ul class="works-on" aria-label="Runs on">
+          <li>Meta Quest Browser</li>
+          <li>Desktop</li>
+          <li>Phone</li>
+        </ul>
+      </section>
+
+      <section id="experiences" class="section" aria-labelledby="exp-h">
+        <div class="section-head">
+          <h2 id="exp-h">Experiences</h2>
+          <p>Each one is a link &mdash; no install, no account.</p>
+        </div>
+        <ul class="cards">
+      <!--EXPERIENCE_CARDS-->
+          <li class="card-item">
+            <div class="card more" aria-hidden="false">
+              <p class="more-k">Next</p>
+              <h3>More soon</h3>
+              <p class="desc">New experiments land here as they&rsquo;re ready.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="about" class="section about" aria-labelledby="about-h">
+        <h2 id="about-h">About</h2>
+        <p>
+          MR is a hub for the mixed-reality work of <a href="https://mauricegarcia.com" rel="noopener">Maurice Garcia</a>. Everything here is
+          built for the open web with WebXR: it starts fast, it works with hand tracking and controllers on Quest, and it always has a
+          regular 3D fallback for everyone else. The source is open on <a href="https://github.com/mosrvs2025/realmbreak" rel="noopener">GitHub</a>.
         </p>
       </section>
-      <noscript>REALMBREAK is a WebXR experience and needs JavaScript. Use a Meta Quest browser, or any modern desktop or phone browser.</noscript>
     </main>
-    <div id="stage" hidden></div>
-    <script type="module" src="/src/main.ts"></script>
+
+    <footer class="foot">
+      <p>&copy; <span id="year">2026</span> Maurice Garcia &middot; <a href="https://mauricegarcia.com" rel="noopener">mauricegarcia.com</a></p>
+      <p><a href="https://github.com/mosrvs2025/realmbreak" rel="noopener">Source (MIT)</a></p>
+    </footer>
+
+    <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+    <script type="module" src="/src/hub/main.ts"></script>
   </body>
 </html>

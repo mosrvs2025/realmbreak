@@ -91,5 +91,5 @@ void detectXR().then((s) => {
   }
 });
 
-// debug/screenshot entry: /?scene=clash auto-starts the desktop fallback fast-forwarded to that scene
+// debug/screenshot entry: /realmbreak?scene=clash auto-starts the desktop fallback fast-forwarded to that scene
 if (new URLSearchParams(location.search).has('scene')) void launch('desktop');

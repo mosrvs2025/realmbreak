@@ -23,7 +23,7 @@ await page.addInitScript(
   iwer +
     `;(() => { const d = new IWER.XRDevice(IWER.metaQuest3); d.position.set(0, 1.6, 0); d.installRuntime({ forceInstall: true }); window.__dev = d; })();`,
 );
-await page.goto(base, { waitUntil: 'networkidle' });
+await page.goto(`${base}/realmbreak`, { waitUntil: 'networkidle' });
 await page.locator('#enter-ar').click();
 await page.waitForFunction(() => window.__realmbreak?.renderer.xr.isPresenting, null, { timeout: 20000 });
 

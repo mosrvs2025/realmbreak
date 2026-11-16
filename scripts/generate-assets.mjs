@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generates every raster brand asset from source art — nothing is hand-exported:
- *   public/favicon.svg (hand-written SVG) -> favicon-32.png, favicon.ico, apple-touch-icon.png,
+ *   public/favicon-mr.svg (hand-written SVG) -> favicon-32.png, favicon.ico, apple-touch-icon.png,
  *                                            icon-192.png, icon-512.png, icon-maskable-512.png
  *   public/og-image.png (1200x630)        -> a real render of the game's beam clash + title overlay
  *
@@ -12,7 +12,8 @@ import { resolve } from 'node:path';
 import { launchBrowser, startPreview } from './lib.mjs';
 
 const pub = resolve('public');
-const svg = readFileSync(resolve(pub, 'favicon.svg'), 'utf8');
+// site-level icons (favicon.ico, apple-touch, manifest icons) use the hub's MR mark
+const svg = readFileSync(resolve(pub, 'favicon-mr.svg'), 'utf8');
 const { base, stop } = await startPreview();
 const browser = await launchBrowser();
 
@@ -50,7 +51,7 @@ writeFileSync(resolve(pub, 'favicon.ico'), Buffer.concat([hdr, ico]));
 
 // --- Open Graph image: capture the real beam clash, then lay the brand over it
 const shot = await browser.newPage({ viewport: { width: 1200, height: 630 } });
-await shot.goto(`${base}/?scene=clash&t=3`, { waitUntil: 'networkidle' });
+await shot.goto(`${base}/realmbreak/?scene=clash&t=3`, { waitUntil: 'networkidle' });
 await shot.waitForFunction(() => window.__realmbreak, null, { timeout: 30000 });
 await shot.evaluate(() => {
   const g = window.__realmbreak;
@@ -75,6 +76,25 @@ await og.setContent(`<!doctype html><body style="margin:0;width:1200px;height:63
   </div></body>`);
 await og.waitForTimeout(300);
 writeFileSync(resolve(pub, 'og-image.png'), await og.screenshot({ type: 'png' }));
+
+// hub card thumbnail (800x450 JPEG) from the same clash capture
+const card = await browser.newPage({ viewport: { width: 800, height: 450 } });
+await card.setContent(`<body style="margin:0"><img src="data:image/jpeg;base64,${bg}" style="width:800px;height:450px;object-fit:cover;display:block"></body>`);
+writeFileSync(resolve(pub, 'cards/realmbreak.jpg'), await card.screenshot({ type: 'jpeg', quality: 82 }));
+
+// --- Open Graph image for the hub (rust on black, perspective grid)
+const hub = await browser.newPage({ viewport: { width: 1200, height: 630 } });
+await hub.setContent(`<!doctype html><body style="margin:0;width:1200px;height:630px;position:relative;overflow:hidden;background:#0c0a09;color:#f3ece6;font-family:'Instrument Sans',Inter,system-ui,sans-serif">
+  <div style="position:absolute;inset:0;background:radial-gradient(60% 70% at 75% 15%,rgba(255,101,53,.38),transparent 70%)"></div>
+  <div style="position:absolute;left:-40%;right:-40%;bottom:-8%;height:62%;background-image:linear-gradient(rgba(255,101,53,.5) 2px,transparent 2px),linear-gradient(90deg,rgba(255,101,53,.5) 2px,transparent 2px);background-size:80px 80px;transform:perspective(520px) rotateX(62deg);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(to top,#000,transparent 85%)"></div>
+  <div style="position:absolute;left:80px;top:96px">
+    <div style="letter-spacing:.2em;font-size:22px;color:#ff8a5c;font-weight:600">MIXED REALITY &middot; WEBXR</div>
+    <div style="font-family:Fraunces,'Iowan Old Style',Georgia,serif;font-size:210px;font-weight:600;letter-spacing:-.04em;line-height:1;margin-top:8px">MR<span style="color:#ff6535">.</span></div>
+    <div style="font-family:Fraunces,Georgia,serif;font-size:50px;margin-top:6px">by Maurice Garcia</div>
+    <div style="margin-top:28px;font-size:28px;color:#cfc6be">Play in your living room &middot; Quest, desktop &amp; phone</div>
+  </div></body>`);
+await hub.waitForTimeout(300);
+writeFileSync(resolve(pub, 'og-hub.png'), await hub.screenshot({ type: 'png' }));
 await browser.close();
 stop();
 console.log('assets written to public/');

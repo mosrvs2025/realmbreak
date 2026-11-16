@@ -1,3 +1,18 @@
+# MR — Mixed Reality by Maurice Garcia
+
+**https://mr.mauricegarcia.com** is a small hub for Maurice Garcia's browser-based mixed-reality experiences. Experiences are listed as cards generated at build time from one data file, [`src/hub/experiences.ts`](src/hub/experiences.ts).
+
+| Route | What |
+| --- | --- |
+| `/` | The hub (dark, warm rust `#ff6535`, Fraunces + Instrument Sans) |
+| `/realmbreak` | REALMBREAK — the WebXR beam-clash fight (below) |
+
+**Add an experience:** append an entry (`id`, `title`, `tagline`, `description`, `tags`, `href`, `status` = `live` / `beta` / `soon`, `image`, `accent`, `platforms`) to `src/hub/experiences.ts`. The card, the hub's JSON-LD and `sitemap.xml` update on the next build. The canonical origin defaults to `https://mr.mauricegarcia.com` (override with `SITE_URL`).
+
+![The MR hub](docs/screenshots/00-hub.jpg)
+
+---
+
 # REALMBREAK
 
 [![CI](https://github.com/mosrvs2025/realmbreak/actions/workflows/ci.yml/badge.svg)](https://github.com/mosrvs2025/realmbreak/actions/workflows/ci.yml)
@@ -68,6 +83,7 @@ npm install
 npm run dev          # http://localhost:5173 (Quest on the same network: use the printed LAN URL over HTTPS, see below)
 npm test             # vitest: gesture, state-machine, clash, crack/shard geometry, pool
 npm run typecheck
+npm run lint         # currently the strict TypeScript check (no ESLint config yet)
 npm run build        # tsc + vite build
 npm run budget       # performance budget gate (also runs in CI)
 npm run screenshots  # Playwright captures of the desktop fallback -> docs/screenshots
@@ -78,13 +94,16 @@ npm run test:xr      # optional local IWER smoke test (not in CI, see limitation
 > WebXR requires a secure context. For on-device testing use a tunnel (e.g. `npx localtunnel --port 5173`,
 > `ngrok http 5173`) or Chrome's port forwarding — or just deploy a Vercel preview.
 
-Debug/screenshot entry: `/?scene=<intro|charge|crack|shatter|arena|clash|win|lose>&t=<seconds>` fast-forwards the desktop
+Debug/screenshot entry: `/realmbreak?scene=<intro|charge|crack|shatter|arena|clash|win|lose>&t=<seconds>` fast-forwards the desktop
 fallback with scripted input to that scene (`&result=lose`, `&freeze=0` to keep running afterwards).
 
 ### Project layout
 
 ```
+index.html           hub page (cards injected at build time)
+realmbreak/index.html  REALMBREAK page
 src/
+  hub/     hub entry, styles, experiences.ts data, card renderer
   core/    pure, unit-tested logic (no three.js): gestures, clash model, game state machine, crack/shard
            geometry, object pool, math
   game/    Game orchestrator (maps machine state → visuals), input unification, in-world copy
@@ -150,8 +169,8 @@ CI enforces byte budgets with `npm run budget` (gzip): entry JS ≤ 12 KB, game 
 1. Import the repo in Vercel (framework: Vite — `vercel.json` already sets build/output).
 2. In the project settings enable **Web Analytics** and **Speed Insights** (the scripts are already injected via
    `@vercel/analytics` and `@vercel/speed-insights`; they no-op until enabled and in dev).
-3. Optional: set `SITE_URL` (otherwise `VERCEL_PROJECT_PRODUCTION_URL` or `https://realmbreak.vercel.app` is used) —
-   it is substituted into canonical/Open Graph/Twitter tags, `robots.txt` and `sitemap.xml` at build time.
+3. The production domain is `https://mr.mauricegarcia.com`. Optionally set `SITE_URL` to override it (e.g. for previews) —
+   it is substituted into canonical/Open Graph/Twitter tags, JSON-LD, `robots.txt`, `sitemap.xml` and the manifest at build time.
 
 `vercel.json` sends `Permissions-Policy: xr-spatial-tracking=(self)` (so WebXR works on the origin), basic hardening
 headers, `immutable` 1-year caching for hashed `/assets/*`, and long caching for icons and the OG image.

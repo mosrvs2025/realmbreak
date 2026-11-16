@@ -12,12 +12,13 @@ import { join, resolve } from 'node:path';
 const dist = resolve('dist');
 const KB = 1024;
 const budgets = {
-  'entry JS (landing page), gzip': { limit: 12 * KB, pick: (f) => /^assets\/index-.*\.js$/.test(f), gz: true },
+  'entry JS (hub + REALMBREAK landing), gzip': { limit: 14 * KB, pick: (f) => /^assets\/(hub|realmbreak)-.*\.js$/.test(f), gz: true },
   'game chunk JS (three.js + game), gzip': { limit: 200 * KB, pick: (f) => /^assets\/game-.*\.js$/.test(f), gz: true },
   'all JS, gzip': { limit: 215 * KB, pick: (f) => f.endsWith('.js'), gz: true },
-  'CSS, gzip': { limit: 6 * KB, pick: (f) => f.endsWith('.css'), gz: true },
-  'index.html, gzip': { limit: 8 * KB, pick: (f) => f === 'index.html', gz: true },
-  'og-image.png (not on the critical path)': { limit: 900 * KB, pick: (f) => f === 'og-image.png', gz: false },
+  'CSS, gzip': { limit: 10 * KB, pick: (f) => f.endsWith('.css'), gz: true },
+  'HTML pages, gzip': { limit: 14 * KB, pick: (f) => f.endsWith('.html'), gz: true },
+  'OG images (not on the critical path)': { limit: 1000 * KB, pick: (f) => /^og-.*\.png$/.test(f), gz: false },
+  'hub card images': { limit: 120 * KB, pick: (f) => f.startsWith('cards/'), gz: false },
 };
 
 function walk(dir, base = dist) {
