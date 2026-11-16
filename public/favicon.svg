@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfeaff"/><stop offset="1" stop-color="#2f6bff"/></linearGradient>
+    <linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc2d1"/><stop offset="1" stop-color="#ff3d6e"/></linearGradient>
+    <radialGradient id="g" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#38b6ff" stop-opacity=".35"/><stop offset="1" stop-color="#38b6ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#05070d"/>
+  <circle cx="32" cy="32" r="30" fill="url(#g)"/>
+  <!-- two halves of a broken realm -->
+  <polygon points="9,13 31,8 27,27 37,36 24,57 9,50" fill="url(#b)"/>
+  <polygon points="36,9 55,15 55,52 31,58 40,40 31,30" fill="url(#p)"/>
+  <!-- the crack -->
+  <polyline points="31,8 27,27 37,36 24,57" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity=".9"/>
+  <polyline points="36,9 31,30 40,40 31,58" fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" opacity=".5"/>
+</svg>
